@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Divyanshi IT | Professional Web Development & Creative Studio</title>
+    <!-- Google Fonts & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-dark: #07040d;
+            --card-glass: rgba(26, 16, 43, 0.65);
+            --border-glass: rgba(168, 85, 247, 0.3);
+            --purple-glow: #9333ea;
+            --accent-violet: #c084fc;
+            --cyan-glow: #06b6d4;
+            --text-bright: #ffffff;
+            --text-dim: #a1a1aa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-bright);
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(147, 51, 234, 0.22) 0%, transparent 45%),
+                radial-gradient(circle at 90% 70%, rgba(6, 182, 212, 0.18) 0%, transparent 45%);
+            background-attachment: fixed;
+        }
+
+        .glass-box {
+            background: var(--card-glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-glass);
+            border-radius: 24px;
+            box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.5);
+        }
+
+        /* Navbar */
+        nav {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 1200px;
+            z-index: 1000;
+            padding: 16px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-logo {
+            font-size: 24px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff, var(--accent-violet));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-violet);
+        }
+
+        .insta-btn {
+            background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 13px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 0 20px rgba(253, 29, 29, 0.3);
+            transition: 0.3s;
+        }
+
+        .insta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(253, 29, 29, 0.6);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 150px 20px 80px 20px;
+            text-align: center;
+        }
+
+        .hero-inner {
+            max-width: 950px;
+        }
+
+        .hero-badge {
+            background: rgba(147, 51, 234, 0.2);
+            border: 1px solid var(--purple-glow);
+            color: var(--accent-violet);
+            padding: 8px 22px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            display: inline-block;
+            letter-spacing: 0.5px;
+        }
+
+        .hero h1 {
+            font-size: 50px;
+            line-height: 1.25;
+            font-weight: 800;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--accent-violet), var(--cyan-glow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--text-dim);
+            margin-bottom: 40px;
+            line-height: 1.7;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-main {
+            background: linear-gradient(135deg, var(--purple-glow), var(--cyan-glow));
+            color: white;
+            padding: 14px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            box-shadow: 0 0 25px rgba(147, 51, 234, 0.5);
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-main:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 35px rgba(147, 51, 234, 0.8);
+        }
+
+        .btn-outline {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: var(--text-bright);
+            padding: 14px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: var(--accent-violet);
+        }
+
+        /* Container & Titles */
+        .container {
+            padding: 90px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .sec-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .sec-title h2 {
+            font-size: 38px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .sec-title p {
+            color: var(--text-dim);
+            font-size: 16px;
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        @media (max-width: 900px) {
+            .about-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 36px; }
+        }
+
+        .about-text h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: var(--text-bright);
+        }
+
+        .about-text p {
+            color: var(--text-dim);
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .experience-badge-box {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .exp-item {
+            padding: 20px 24px;
+            flex: 1;
+            text-align: center;
+        }
+
+        .exp-item h4 {
+            font-size: 32px;
+            color: var(--accent-violet);
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+
+        .exp-item p {
+            font-size: 13px;
+            color: var(--text-dim);
+            margin: 0;
+            font-weight: 600;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            padding: 40px 30px;
+            transition: 0.4s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-violet);
+            box-shadow: 0 15px 45px rgba(147, 51, 234, 0.35);
+        }
+
+        .service-icon {
+            width: 64px;
+            height: 64px;
+            background: rgba(147, 51, 234, 0.2);
+            border: 1px solid var(--purple-glow);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            color: var(--accent-violet);
+            margin-bottom: 24px;
+        }
+
+        .service-card h3 {
+            font-size: 22px;
+            margin-bottom: 12px;
+        }
+
+        .service-card p {
+            color: var(--text-dim);
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        .tag-list {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 18px;
+        }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--accent-violet);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        /* Portfolio / Projects Showcase Grid */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .portfolio-card {
+            padding: 30px;
+            transition: 0.4s;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .portfolio-card:hover {
+            border-color: var(--cyan-glow);
+            transform: translateY(-8px);
+        }
+
+        .portfolio-card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .portfolio-card p {
+            color: var(--text-dim);
+            font-size: 14px;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .portfolio-link {
+            color: var(--cyan-glow);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .portfolio-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .contact-card {
+            padding: 35px 25px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .contact-card:hover {
+            border-color: var(--cyan-glow);
+            transform: translateY(-5px);
+        }
+
+        .contact-card i {
+            font-size: 34px;
+            color: var(--cyan-glow);
+            margin-bottom: 18px;
+        }
+
+        .contact-card h4 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .contact-card a, .contact-card p {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .contact-card a:hover {
+            color: var(--accent-violet);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--text-dim);
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="glass-box">
+        <div class="brand-logo">
+            <i class="fa-solid fa-code"></i> Divyanshi IT
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#work">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <a href="https://instagram.com/sdivyanshi900" target="_blank" class="insta-btn">
+            <i class="fa-brands fa-instagram"></i> @sdivyanshi900
+        </a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-inner">
+            <span class="hero-badge">✨ Professional IT & Creative Solutions Studio</span>
+            <h1>All Your IT & Creative Requirements in One Place — <span>Delivering High-Quality Excellence</span></h1>
+            <p>From high-performance web applications and glassmorphic landing pages to professional brand identity design and cinematic video editing, we deliver premium quality tailored for your digital success.</p>
+            <div class="btn-group">
+                <a href="#contact" class="btn-main"><i class="fa-solid fa-paper-plane"></i> Let's Start a Project</a>
+                <a href="#work" class="btn-outline"><i class="fa-solid fa-folder-open"></i> View Featured Projects</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="container">
+        <div class="glass-box" style="padding: 50px;">
+            <div class="about-grid">
+                <div class="about-text">
+                    <h3>About Divyanshi IT</h3>
+                    <p>Welcome to <strong>Divyanshi IT</strong>, a professional freelance digital studio specializing in modern web development, UI/UX architecture, responsive landing pages, custom logo branding, and multimedia editing.</p>
+                    <p>With <strong>1.5+ years of hands-on experience</strong> in front-end engineering and digital problem-solving, every project is crafted with clean code, lightning-fast responsiveness, and sleek glassmorphic aesthetics to build instant trust with clients.</p>
+                </div>
+                <div>
+                    <div class="glass-box exp-item" style="border-color: var(--cyan-glow);">
+                        <h4>1.5+ Years</h4>
+                        <p>Freelance & Development Experience</p>
+                    </div>
+                    <div class="experience-badge-box">
+                        <div class="glass-box exp-item">
+                            <h4>100%</h4>
+                            <p>Client Dedication</p>
+                        </div>
+                        <div class="glass-box exp-item">
+                            <h4>Modern</h4>
+                            <p>UI Standards</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="container">
+        <div class="sec-title">
+            <h2>Our Core Services</h2>
+            <p>Comprehensive digital solutions tailored to elevate your personal brand or business</p>
+        </div>
+
+        <div class="services-grid">
+            
+            <!-- Service 1 -->
+            <div class="glass-box service-card">
+                <div class="service-icon"><i class="fa-solid fa-gem"></i></div>
+                <h3>Glassmorphic Websites</h3>
+                <p>Luxury dark-mode aesthetic web interfaces featuring frosted glass blurs, fluid micro-interactions, and flawless cross-device compatibility.</p>
+                <div class="tag-list">
+                    <span class="tag">Glass UI</span>
+                    <span class="tag">CSS/HTML</span>
+                    <span class="tag">Responsive</span>
+                </div>
+            </div>
+
+            <!-- Service 2 -->
+            <div class="glass-box service-card">
+                <div class="service-icon"><i class="fa-solid fa-laptop-code"></i></div>
+                <h3>Web & Mobile Apps</h3>
+                <p>Interactive web applications, custom dashboards, and algorithmic problem-solving interfaces built using clean, scalable code architecture.</p>
+                <div class="tag-list">
+                    <span class="tag">Python/Streamlit</span>
+                    <span class="tag">JavaScript</span>
+                    <span class="tag">Dashboards</span>
+                </div>
+            </div>
+
+            <!-- Service 3 -->
+            <div class="glass-box service-card">
+                <div class="service-icon"><i class="fa-solid fa-rocket"></i></div>
+                <h3>High-Converting Landing Pages</h3>
+                <p>Strategic, fast-loading landing pages designed specifically for portfolios, startup promotions, lead generation, and brand visibility.</p>
+                <div class="tag-list">
+                    <span class="tag">Lead Gen</span>
+                    <span class="tag">SEO Friendly</span>
+                    <span class="tag">Fast Loading</span>
+                </div>
+            </div>
+
+            <!-- Service 4 -->
+            <div class="glass-box service-card">
+                <div class="service-icon"><i class="fa-solid fa-pen-nib"></i></div>
+                <h3>Brand Logo Design</h3>
+                <p>Modern, minimal, and unique brand mark creation that establishes a powerful, memorable visual identity for your enterprise.</p>
+                <div class="tag-list">
+                    <span class="tag">Brand Identity</span>
+                    <span class="tag">Vector Graphics</span>
+                    <span class="tag">Tech Logos</span>
+                </div>
+            </div>
+
+            <!-- Service 5 -->
+            <div class="glass-box service-card">
+                <div class="service-icon"><i class="fa-solid fa-video"></i></div>
+                <h3>Wedding Short Video Editing</h3>
+                <p>Cinematic, emotionally resonant wedding short reels and highlights edited with precise beat-syncing and professional color grading.</p>
+                <div class="tag-list">
+                    <span class="tag">Cinematic Reels</span>
+                    <span class="tag">Color Grading</span>
+                    <span class="tag">Seamless Transitions</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Featured Projects & Trust Showcase Section -->
+    <section id="work" class="container">
+        <div class="sec-title">
+            <h2>Featured Projects & Work Showcase</h2>
+            <p>Explore live web applications, open-source repositories, and verified code implementations</p>
+        </div>
+
+        <div class="portfolio-grid">
+            
+            <!-- Project 1 -->
+            <div class="glass-box portfolio-card">
+                <div>
+                    <h3><i class="fa-brands fa-github" style="color: var(--accent-violet);"></i> GitHub Repositories & Open Source</h3>
+                    <p>Browse through structured codebases, front-end interface components, UI libraries, and public version-controlled web projects.</p>
+                </div>
+                <div style="margin-top: 20px;">
+                    <a href="https://github.com/sdivyanshi900" target="_blank" class="portfolio-link">
+                        View GitHub Profile <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="glass-box portfolio-card">
+                <div>
+                    <h3><i class="fa-solid fa-globe" style="color: var(--cyan-glow);"></i> Live Web Portfolios & Apps</h3>
+                    <p>Production-ready, responsive web applications, interactive data dashboards, and modern glassmorphic landing pages built for clients.</p>
+                </div>
+                <div style="margin-top: 20px;">
+                    <a href="https://instagram.com/sdivyanshi900" target="_blank" class="portfolio-link">
+                        Explore Work Showcase <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="glass-box portfolio-card">
+                <div>
+                    <h3><i class="fa-solid fa-code-branch" style="color: var(--accent-violet);"></i> Custom Landing Pages & UI Apps</h3>
+                    <p>High-performance client web portals featuring custom dark-mode aesthetics, responsive layouts, and seamless interactive user flows.</p>
+                </div>
+                <div style="margin-top: 20px;">
+                    <a href="https://github.com/sdivyanshi900" target="_blank" class="portfolio-link">
+                        Check Code & Demos <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="container">
+        <div class="sec-title">
+            <h2>Get In Touch</h2>
+            <p>Let's collaborate on your next digital project or professional requirement</p>
+        </div>
+
+        <div class="contact-grid">
+            <!-- Phone -->
+            <div class="glass-box contact-card">
+                <i class="fa-solid fa-phone-volume"></i>
+                <h4>Phone / WhatsApp</h4>
+                <a href="tel:9555898399">+91 9555898399</a>
+            </div>
+
+            <!-- Email -->
+            <div class="glass-box contact-card">
+                <i class="fa-solid fa-envelope"></i>
+                <h4>Official Email</h4>
+                <a href="mailto:dkrishnabrh.official@gmail.com">dkrishnabrh.official@gmail.com</a>
+            </div>
+
+            <!-- Instagram -->
+            <div class="glass-box contact-card">
+                <i class="fa-brands fa-instagram"></i>
+                <h4>Instagram Studio</h4>
+                <a href="https://instagram.com/sdivyanshi900" target="_blank">@sdivyanshi900</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Divyanshi IT. All Rights Reserved. Designed & Developed with Professional Standards.</p>
+    </footer>
+
+</body>
+</html>
